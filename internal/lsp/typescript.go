@@ -45,7 +45,9 @@ func openAllTypeScriptFiles(ctx context.Context, client *Client, workspaceDir st
 		}
 
 		// Check if file is a TypeScript file
-		if strings.HasSuffix(path, ".ts") || strings.HasSuffix(path, ".tsx") {
+		if strings.HasSuffix(path, ".ts") || strings.HasSuffix(path, ".tsx") ||
+				strings.HasSuffix(path, ".js") || strings.HasSuffix(path, ".jsx") ||
+				strings.HasSuffix(path, ".mjs") || strings.HasSuffix(path, ".cjs") {
 			if err := client.OpenFile(ctx, path); err != nil {
 				lspLogger.Warn("Failed to open TypeScript file %s: %v", path, err)
 				return nil // Continue with other files even if one fails
